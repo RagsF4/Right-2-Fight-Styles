@@ -1,0 +1,364 @@
+local plr = game.Players.LocalPlayer
+local pgui = plr.PlayerGui
+local interf = pgui.Interface
+local bt = interf.Battle
+local main = bt.Main
+local moves = game.ReplicatedStorage.Moves
+
+local styles = game.ReplicatedStorage.Styles
+local brawler = styles.Brawler
+local rush = styles.Rush
+local beast = styles.Beast
+local status = plr.Status
+local menu = pgui.MenuUI.Menu 
+local abil = menu.Abilities.Frame.Frame.Frame
+local abilFolder = game.ReplicatedStorage.Abilities.Brawler
+local Player = game.Players.LocalPlayer
+local Rep = game.ReplicatedStorage
+local Char = Player.Character
+local Main = Player.PlayerGui.Interface.Battle.Main
+local userInput = game:GetService("UserInputService")
+local GUY = main.GUY.GUY
+
+local function Reload()
+local plr = game:GetService("Players").LocalPlayer
+local pgui = plr.PlayerGui
+local interf = pgui.Interface
+local cframe = plr.Character.LowerTorso.CFrame
+interf.Client.Disabled = true
+plr.Character.LowerTorso.CFrame = cframe
+task.wait()
+plr.Character.LowerTorso.CFrame = cframe
+interf.Client.Disabled = false
+task.wait()
+plr.Character.LowerTorso.CFrame = cframe
+end
+
+if Type == "RGB" then
+	local LegendSequence = 
+	ColorSequence.new({ColorSequenceKeypoint.new(0, brawler.Color.Value), 
+	ColorSequenceKeypoint.new(0.1, rush.Color.Value)
+	, ColorSequenceKeypoint.new(0.3, beast.Color.Value), 
+	ColorSequenceKeypoint.new(0.5, brawler.Color.Value)
+	, ColorSequenceKeypoint.new(0.65, beast.Color.Value)
+	, ColorSequenceKeypoint.new(0.75, rush.Color.Value), 
+	ColorSequenceKeypoint.new(0.85, beast.Color.Value)
+	, ColorSequenceKeypoint.new(0.9, rush.Color.Value), 
+	ColorSequenceKeypoint.new(1, brawler.Color.Value)})
+	local function color()
+		if status.Style.Value == Style.Name then
+			Char.HumanoidRootPart.Fire_Main.Color = LegendSequence
+			Char.HumanoidRootPart.Fire_Secondary.Color = LegendSequence
+			Char.HumanoidRootPart.Lines1.Color = LegendSequence
+			Char.HumanoidRootPart.Lines2.Color = LegendSequence
+			Char.HumanoidRootPart.Fire_Main.Rate = status.Heat.Value - 50
+			Char.HumanoidRootPart.Fire_Secondary.Rate = status.Heat.Value - 50
+			Char.HumanoidRootPart.Fire_Main.TimeScale = 0.5
+			Char.HumanoidRootPart.Fire_Secondary.TimeScale = 0.5
+			Char.HumanoidRootPart.Lines2.Rate = 0
+			Char.HumanoidRootPart.Lines1.Rate = 0
+			Char.HumanoidRootPart.Fire_Main.Texture = "rbxassetid://566605401"
+			Char.HumanoidRootPart.Fire_Secondary.Texture = "rbxassetid://568792382"
+		end
+	end
+	coroutine.wrap(function()
+		repeat
+			wait(0.1)
+			color()
+		until false
+	end)()
+	
+local Sequence = NumberSequence.new{
+    NumberSequenceKeypoint.new(0, 0),
+    NumberSequenceKeypoint.new(0.5, 0.7),
+    NumberSequenceKeypoint.new(1, 1),
+}
+
+Trail = Instance.new("Trail", game.Players.LocalPlayer.Character.RightLowerLeg)
+Trail = Instance.new("Trail", game.Players.LocalPlayer.Character.LeftHand)	
+Trail = Instance.new("Trail", game.Players.LocalPlayer.Character.RightHand)
+Trail = Instance.new("Trail", game.Players.LocalPlayer.Character.LeftLowerLeg)	
+	
+coroutine.wrap(function()
+	repeat
+		task.wait()
+		local Trail = game.Players.LocalPlayer.Character.LeftHand.Trail
+		Trail.Brightness = 1
+		Trail.FaceCamera = true
+		Trail.LightEmission = 1
+		Trail.Attachment0 = Char.LeftHand.LeftWristRigAttachment
+		Trail.Attachment1 = Char.LeftLowerArm.LeftElbowRigAttachment
+		Trail.Lifetime = 0.05
+		Trail.Texture = "rbxassetid://9486565084"
+		Trail.Color = LegendSequence
+		Trail.Transparency = Sequence
+		Trail.Name = "Trail"
+
+		local Trail2 = game.Players.LocalPlayer.Character.RightHand.Trail
+		Trail2.Brightness = 1
+		Trail2.FaceCamera = true
+		Trail2.LightEmission = 1
+		Trail2.Attachment0 = Char.RightHand.RightWristRigAttachment
+		Trail2.Attachment1 = Char.RightLowerArm.RightElbowRigAttachment
+		Trail2.Lifetime = 0.05
+		Trail2.Texture = "rbxassetid://9486565084"
+		Trail2.Color = LegendSequence
+		Trail2.Transparency = Sequence
+		Trail2.Name = "Trail"
+
+		local Trail3 = game.Players.LocalPlayer.Character.LeftLowerLeg.Trail
+		Trail3.Brightness = 1
+		Trail3.FaceCamera = true
+		Trail3.LightEmission = 1
+		Trail3.Attachment0 = Char.LeftLowerLeg.LeftAnkleRigAttachment
+		Trail3.Attachment1 = Char.LeftUpperLeg.LeftKneeRigAttachment
+		Trail3.Lifetime = 0.1
+		Trail3.Texture = "rbxassetid://9486565084"
+		Trail3.Color = LegendSequence
+		Trail3.Transparency = Sequence
+		Trail3.Name = "Trail"
+
+		local Trail4 = game.Players.LocalPlayer.Character.RightLowerLeg.Trail
+		Trail4.Brightness = 1
+		Trail4.FaceCamera = true
+		Trail4.LightEmission = 1
+		Trail4.Attachment0 = Char.RightLowerLeg.RightAnkleRigAttachment
+		Trail4.Attachment1 = Char.RightUpperLeg.RightKneeRigAttachment
+		Trail4.Lifetime = 0.1
+		Trail4.Texture = "rbxassetid://9486565084"
+		Trail4.Color = LegendSequence
+		Trail4.Transparency = Sequence
+		Trail4.Name = "Trail"
+	until false
+end)()
+
+task.wait(0.1)
+
+local ts = game:GetService("TweenService")
+local ti = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+		
+local function remove_brighness(color)
+	local h,s,v = color:ToHSV()
+	return Color3.fromHSV(h, s, 1)
+end
+			
+game.Players.LocalPlayer.Character.DescendantAdded:Connect(function(v)
+	if v.ClassName:find("Trail") then
+		local highlight = Instance.new("Highlight", game.Players.LocalPlayer.Character.RightHand)
+		local fadeout = ts:Create(highlight, ti, {FillTransparency = 1})
+		
+		local style = game.Players.LocalPlayer.Status.Style.Value
+		local style_obj = game.ReplicatedStorage.Styles:FindFirstChild(style)
+		local color = style_obj.Color
+		
+		highlight.FillColor = color.Value
+		
+		highlight.Adornee = v.Parent
+		highlight.OutlineTransparency = 1
+		highlight.FillTransparency = 1
+		
+		ts:Create(highlight, ti, {FillTransparency = 0.65}):Play()
+		
+		
+		fadeout.Completed:Once(function()
+			highlight:Destroy()
+		end)
+		
+		v.Destroying:Once(function()
+		fadeout:Play()
+		end)
+	end
+end)
+
+game.Players.LocalPlayer.Character.DescendantAdded:Connect(function(v)
+	if v.ClassName:find("Trail") then
+		local highlight = Instance.new("ParticleEmitter", game.Players.LocalPlayer.Character.RightHand)
+		local fadeout = ts:Create(highlight, ti, {Rate = 5})
+		
+		local style = game.Players.LocalPlayer.Status.Style.Value
+		local style_obj = game.ReplicatedStorage.Styles:FindFirstChild(style)
+		local color = style_obj.Color
+		
+		highlight.Color = LegendSequence
+
+		highlight.Parent = v.Parent
+		highlight.Size = NumberSequence.new{
+		NumberSequenceKeypoint.new(0, 0.5),
+		NumberSequenceKeypoint.new(1, 0)}
+
+		highlight.Transparency = NumberSequence.new{
+		NumberSequenceKeypoint.new(0, 0),
+		NumberSequenceKeypoint.new(1, 1)}
+		
+		highlight.SpreadAngle = Vector2.new(10, 10)
+		highlight.Texture = "rbxassetid://359293256"
+		highlight.Lifetime = NumberRange.new(0.2, 0.5)
+		highlight.Shape = "Disc"
+		highlight.ShapePartial = 3
+		highlight.Rate = 10
+		highlight.Brightness = 20
+		highlight.LightEmission = 1
+		highlight.VelocityInheritance = 1
+		
+		ts:Create(highlight, ti, {Rate = 5}):Play()
+		
+		fadeout.Completed:Once(function()
+			highlight:Destroy()
+		end)
+		
+		v.Destroying:Once(function()
+		fadeout:Play()
+		end)
+	end
+end)
+
+local Sequence = NumberSequence.new{
+    NumberSequenceKeypoint.new(0, 0),
+    NumberSequenceKeypoint.new(0.5, 0.7),
+    NumberSequenceKeypoint.new(1, 2.4),
+}
+
+Char.HumanoidRootPart.TimeFor.Color = LegendSequence
+Char.HumanoidRootPart.TimeFor.Size = Sequence
+Char.HumanoidRootPart.TimeFor.Texture = "rbxassetid://463023400"
+Char.HumanoidRootPart.TimeFor.Brightness = 20
+Char.HumanoidRootPart.TimeFor.Rate = 50
+Char.HumanoidRootPart.TimeFor.Shape = "Disc"
+Char.HumanoidRootPart.TimeFor.SpreadAngle = Vector2.new(50, 50)
+Char.HumanoidRootPart.TimeFor.Speed = NumberRange.new(0.5, 5)
+
+Char.HumanoidRootPart.Running.Texture = "rbxassetid://9486565084"
+
+Char.HumanoidRootPart.Fire_Main.Lifetime = NumberRange.new(0.10000000149011612, 1)
+Char.HumanoidRootPart.Fire_Secondary.Lifetime = NumberRange.new(0.10000000149011612, 1)
+Char.HumanoidRootPart.Fire_Main.SpreadAngle = Vector2.new(10, 10)		
+Char.HumanoidRootPart.Fire_Secondary.SpreadAngle = Vector2.new(10, 10)	
+
+end
+
+if Type == "Y0" then
+local LegendSequence = 
+ColorSequence.new({ColorSequenceKeypoint.new(0, brawler.Color.Value), 
+ColorSequenceKeypoint.new(1, brawler.Color.Value)})
+	local function color()
+		if status.Style.Value == Style.Name then
+			Char.HumanoidRootPart.Fire_Main.Color = LegendSequence
+			Char.HumanoidRootPart.Fire_Secondary.Color = LegendSequence
+			Char.HumanoidRootPart.Lines1.Color = LegendSequence
+			Char.HumanoidRootPart.Lines2.Color = LegendSequence
+			Char.HumanoidRootPart.Fire_Main.Rate = status.Heat.Value - 50
+			Char.HumanoidRootPart.Fire_Secondary.Rate = status.Heat.Value - 50
+			Char.HumanoidRootPart.Fire_Main.TimeScale = 0.5
+			Char.HumanoidRootPart.Fire_Secondary.TimeScale = 0.5
+			Char.HumanoidRootPart.Lines2.Rate = 0
+			Char.HumanoidRootPart.Lines1.Rate = 0
+			Char.HumanoidRootPart.Fire_Main.Texture = "rbxassetid://566605401"
+			Char.HumanoidRootPart.Fire_Secondary.Texture = "rbxassetid://568792382"
+		end
+	end
+	coroutine.wrap(function()
+		repeat
+			wait(0.1)
+			color()
+		until false
+	end)()
+
+local ts = game:GetService("TweenService")
+local ti = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+		
+local function remove_brighness(color)
+	local h,s,v = color:ToHSV()
+	return Color3.fromHSV(h, s, 1)
+end
+			
+game.Players.LocalPlayer.Character.DescendantAdded:Connect(function(v)
+	if v.ClassName:find("Trail") then
+		local highlight = Instance.new("Highlight", game.Players.LocalPlayer.Character.RightHand)
+		local fadeout = ts:Create(highlight, ti, {FillTransparency = 1})
+		
+		local style = game.Players.LocalPlayer.Status.Style.Value
+		local style_obj = game.ReplicatedStorage.Styles:FindFirstChild(style)
+		local color = style_obj.Color
+		
+		highlight.FillColor = color.Value
+		
+		highlight.Adornee = v.Parent
+		highlight.OutlineTransparency = 1
+		highlight.FillTransparency = 1
+		
+		ts:Create(highlight, ti, {FillTransparency = 0.65}):Play()
+		
+		
+		fadeout.Completed:Once(function()
+			highlight:Destroy()
+		end)
+		
+		v.Destroying:Once(function()
+		fadeout:Play()
+		end)
+	end
+end)
+
+game.Players.LocalPlayer.Character.DescendantAdded:Connect(function(v)
+	if v.ClassName:find("Trail") then
+		local highlight = Instance.new("ParticleEmitter", game.Players.LocalPlayer.Character.RightHand)
+		local fadeout = ts:Create(highlight, ti, {Rate = 2})
+		
+		local style = game.Players.LocalPlayer.Status.Style.Value
+		local style_obj = game.ReplicatedStorage.Styles:FindFirstChild(style)
+		local color = style_obj.Color
+		
+		highlight.Color = LegendSequence
+
+		highlight.Parent = v.Parent
+		highlight.Size = NumberSequence.new{
+		NumberSequenceKeypoint.new(0, 1),
+		NumberSequenceKeypoint.new(1, 0)}
+		
+		highlight.SpreadAngle = Vector2.new(10, 10)
+		highlight.Texture = "rbxassetid://566605401"
+		highlight.Lifetime = NumberRange.new(0.2, 0.5)
+		highlight.Shape = "Disc"
+		highlight.ShapePartial = 3
+		highlight.Rate = 2
+		highlight.Brightness = 20
+		highlight.LightEmission = 1
+		
+		ts:Create(highlight, ti, {Rate = 2}):Play()
+		
+		
+		fadeout.Completed:Once(function()
+			highlight:Destroy()
+		end)
+		
+		v.Destroying:Once(function()
+		fadeout:Play()
+		end)
+	end
+end)
+
+local Sequence = NumberSequence.new{
+    NumberSequenceKeypoint.new(0, 0),
+    NumberSequenceKeypoint.new(0.5, 0.7),
+    NumberSequenceKeypoint.new(1, 2.4),
+}
+
+Char.HumanoidRootPart.TimeFor.Color = LegendSequence
+Char.HumanoidRootPart.TimeFor.Size = Sequence
+Char.HumanoidRootPart.TimeFor.Texture = "rbxassetid://463023400"
+Char.HumanoidRootPart.TimeFor.Brightness = 20
+Char.HumanoidRootPart.TimeFor.Rate = 50
+Char.HumanoidRootPart.TimeFor.Shape = "Disc"
+Char.HumanoidRootPart.TimeFor.SpreadAngle = Vector2.new(50, 50)
+Char.HumanoidRootPart.TimeFor.Speed = NumberRange.new(0.5, 5)
+
+Char.HumanoidRootPart.Running.Texture = "rbxassetid://9486565084"
+
+Char.HumanoidRootPart.Fire_Main.Lifetime = NumberRange.new(0.10000000149011612, 1)
+Char.HumanoidRootPart.Fire_Secondary.Lifetime = NumberRange.new(0.10000000149011612, 1)
+Char.HumanoidRootPart.Fire_Main.SpreadAngle = Vector2.new(10, 10)		
+Char.HumanoidRootPart.Fire_Secondary.SpreadAngle = Vector2.new(10, 10)
+
+end	
+
+Reload()
